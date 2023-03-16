@@ -6,7 +6,7 @@
 #    By: pbergero <pascaloubergeron@hotmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/26 19:44:21 by pbergero          #+#    #+#              #
-#    Updated: 2023/03/15 16:03:35 by pbergero         ###   ########.fr        #
+#    Updated: 2023/03/16 19:14:23 by pbergero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,4 +79,8 @@ re: fclean all
 test: $(NAME)
 	./philosopher 3 500 25 25 5
 
+git:
+	git add ./src/*.c ./include/*.h makefile
+	git commit -m "auto commit"
+	git push git@github.com:yup339/philosopher.git master
 -include $(OBJ:.o=.d)
