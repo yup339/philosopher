@@ -6,7 +6,7 @@
 /*   By: pbergero <pascaloubergeron@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:51:08 by pbergero          #+#    #+#             */
-/*   Updated: 2023/03/15 16:55:35 by pbergero         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:52:08 by pbergero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philo{
 	pthread_t			thread;
 	int					meal_left;
 	int					nbr;
+	char				*name;
 	enum e_philo_state	state;
 	int					time_of_last_meal;
 	int					time_of_last_action;

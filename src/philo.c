@@ -6,7 +6,7 @@
 /*   By: pbergero <pascaloubergeron@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:08:34 by pbergero          #+#    #+#             */
-/*   Updated: 2023/03/15 20:07:27 by pbergero         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:47:20 by pbergero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ void	philo_thinks(t_philo *philo)
 		if (is_philo_dead(philo))
 			return (philo_dies(philo));
 	}
+	philo->time_of_last_action = get_time_ms();
 	philo->state = EAT;
 }
 
 void	philo_eats(t_philo *philo)
 {
+	philo->time_of_last_meal = get_time_ms();
 	print_philo_eats(philo);
 	while (is_state_finish(philo, philo->table->action_time.tte))
 	{
@@ -46,9 +48,8 @@ void	philo_eats(t_philo *philo)
 		if (is_dead_at_table(philo->table, ASK))
 			return ;
 	}
+	philo->time_of_last_action = get_time_ms();
 	put_forks_down(philo);
-	philo->time_of_last_meal = get_time_ms();
-	philo->time_of_last_action = philo->time_of_last_meal;
 	if (philo->meal_left > 0)
 	{
 		pthread_mutex_lock(&philo->table->meal_check);
@@ -65,7 +66,7 @@ void	philo_eats(t_philo *philo)
 
 void	philo_sleeps(t_philo *philo)
 {
-	print_philo_sleeps(philo);
+	print_philo_sleep(philo);
 	while (is_state_finish(philo, philo->table->action_time.tts))
 	{
 		if (is_philo_dead(philo))

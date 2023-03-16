@@ -6,7 +6,7 @@
 /*   By: pbergero <pascaloubergeron@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:28:22 by pbergero          #+#    #+#             */
-/*   Updated: 2023/03/07 07:13:13 by pbergero         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:35:14 by pbergero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	check_param(int ac, char **av, t_table *table)
 	if (table->action_time.ttd <= 0 || table->action_time.tte <= 0
 		|| table->action_time.tts <= 0 || table->nbr_philo <= 0)
 		return (printf("args are smaller than 1\n"));
+	if (table->nbr_philo > 200)
+		return (printf("too many philo for this table of 200\n"));
 	if (ac == 6)
 	{
 		table->meal_needed = ft_atoi(av[5]);

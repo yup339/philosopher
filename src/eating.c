@@ -6,12 +6,13 @@
 /*   By: pbergero <pascaloubergeron@hotmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:34:43 by pbergero          #+#    #+#             */
-/*   Updated: 2023/03/14 15:28:51 by pbergero         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:52:26 by pbergero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "print_philo.h"
+#include "timer.h"
 
 int	take_forks(t_philo *philo)
 {
@@ -37,11 +38,9 @@ int	take_forks(t_philo *philo)
 void	put_forks_down(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->right_fork->mutex);
-	if (philo->table->nbr_philo != 1)
-		pthread_mutex_lock(&philo->left_fork->mutex);
+	pthread_mutex_lock(&philo->left_fork->mutex);
 	philo->right_fork->in_use = false;
 	philo->left_fork->in_use = false;
 	pthread_mutex_unlock(&philo->right_fork->mutex);
-	if (philo->table->nbr_philo != 1)
-		pthread_mutex_unlock(&philo->left_fork->mutex);
+	pthread_mutex_unlock(&philo->left_fork->mutex);
 }
